@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https: ; connect-src 'self' https://formspree.io https://wa.me; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none';">
+
+
+
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <title>Imperial Uniformes - Confecções e Estamparia</title>
+    
+    <style>
+        /* PROTEÇÃO CSS - Impede seleção de texto */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F4E8C1;
+            --gold-dark: #AA8C2C;
+            --black-deep: #050505;
+            --black-soft: #121212;            --gray-dark: #1F1F1F;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--black-soft);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; pointer-events: none; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+        nav {
+            max-width: 1280px; margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 1rem; cursor: pointer; }
+        .logo-icon {
+            width: 55px; height: 55px;
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: var(--black-deep);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);            transition: var(--transition);
+        }
+        .logo:hover .logo-icon { transform: rotate(10deg) scale(1.05); }
+        .logo-text h1 {
+            color: var(--gold-primary); font-size: 1.6rem;
+            letter-spacing: -0.5px; text-transform: uppercase;
+        }
+        .logo-text span {
+            color: var(--white); font-size: 0.7rem; font-weight: 300;
+            letter-spacing: 3px; text-transform: uppercase;
+            display: block; margin-top: 2px;
+        }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a {
+            color: var(--white); font-size: 0.9rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1px;
+            position: relative; padding-bottom: 5px;
+            transition: var(--transition); min-height: 44px;
+            display: flex; align-items: center;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: var(--gold-primary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--gold-primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu {
+            display: none; color: var(--gold-primary);
+            font-size: 1.8rem; cursor: pointer; padding: 0.5rem;
+            min-height: 44px; min-width: 44px;
+            align-items: center; justify-content: center;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 200px 2rem 120px;
+            background: linear-gradient(135deg, var(--black-deep) 0%, var(--gray-dark) 100%);
+            position: relative; overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.15) 1px, transparent 0);
+            background-size: 40px 40px; opacity: 0.3; pointer-events: none;
+        }
+        .hero-container {
+            max-width: 1280px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.2fr 1fr;            gap: 5rem; align-items: center; position: relative; z-index: 2;
+        }
+        .hero-content h2 {
+            font-size: 4rem; color: var(--gold-primary);
+            margin-bottom: 1.5rem; line-height: 1.1;
+            background: linear-gradient(to right, var(--gold-light), var(--gold-primary));
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease forwards;
+        }
+        .hero-content .tagline {
+            font-size: 1.4rem; color: var(--white);
+            margin-bottom: 2rem; font-weight: 300;
+            border-left: 4px solid var(--gold-primary); padding-left: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s forwards; opacity: 0;
+        }
+        .hero-content p {
+            color: #cccccc; margin-bottom: 3rem; font-size: 1.1rem; max-width: 500px;
+            animation: fadeInUp 1s ease 0.4s forwards; opacity: 0;
+        }
+        .hero-buttons {
+            display: flex; gap: 1.5rem;
+            animation: fadeInUp 1s ease 0.6s forwards; opacity: 0;
+        }
+        .btn {
+            padding: 1.2rem 3rem; border: none;
+            font-family: var(--font-body); font-weight: 600;
+            font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer;
+            transition: var(--transition); position: relative;
+            overflow: hidden; z-index: 1;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; min-height: 44px; touch-action: manipulation;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+            color: var(--black-deep);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s; z-index: -1;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.5);
+        }        .btn-primary:active { transform: scale(0.98); }
+        .btn-secondary {
+            background: transparent; color: var(--gold-primary);
+            border: 2px solid var(--gold-primary);
+        }
+        .btn-secondary:hover {
+            background: var(--gold-primary); color: var(--black-deep);
+            transform: translateY(-5px);
+        }
+        .hero-image { position: relative; animation: fadeIn 1.5s ease forwards; }
+        .hero-image-placeholder {
+            width: 100%; height: 550px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10rem; color: rgba(255,255,255,0.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative; overflow: hidden;
+        }
+        .hero-image-placeholder::after {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem; border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: float 4s ease-in-out infinite;
+            border-left: 4px solid var(--gold-primary);
+            min-width: 180px;
+        }
+        .card-1 { bottom: 40px; left: -30px; animation-delay: 0s; }
+        .card-2 { top: 40px; right: -20px; animation-delay: 2s; }
+        .floating-card i { color: var(--gold-primary); font-size: 2rem; margin-bottom: 0.5rem; }
+        .floating-card h4 { color: var(--black-deep); font-size: 1.4rem; font-family: var(--font-heading); }
+        .floating-card p { color: #666; font-size: 0.85rem; font-weight: 500; }
+
+        /* SEÇÕES GERAIS */
+        section { padding: 100px 2rem; }
+        .container { max-width: 1280px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header h2 {
+            font-size: 3rem; color: var(--black-deep);
+            margin-bottom: 1rem; position: relative; display: inline-block;
+        }        .section-header h2::after {
+            content: ''; position: absolute; bottom: -15px; left: 50%;
+            transform: translateX(-50%); width: 60px; height: 3px;
+            background: var(--gold-primary);
+        }
+        .section-header p {
+            color: #666; font-size: 1.1rem; margin-top: 1.5rem;
+            max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+
+        /* ABOUT */
+        .about { background: var(--gray-light); }
+        .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .about-card {
+            background: var(--white); padding: 3rem 2rem;
+            border-radius: 5px; text-align: center;
+            transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
+            position: relative; overflow: hidden;
+        }
+        .about-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 3px; background: var(--gold-primary);
+            transform: scaleX(0); transition: var(--transition); transform-origin: left;
+        }
+        .about-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-soft); }
+        .about-card:hover::before { transform: scaleX(1); }
+        .about-card i { font-size: 3.5rem; color: var(--gold-primary); margin-bottom: 2rem; transition: var(--transition); }
+        .about-card:hover i { transform: scale(1.1); }
+        .about-card h3 { font-size: 1.5rem; color: var(--black-deep); margin-bottom: 1rem; }
+        .about-card p { color: #666; line-height: 1.8; font-size: 0.95rem; }
+
+        /* SERVICES */
+        .services { background: var(--black-deep); color: var(--white); position: relative; }
+        .services .section-header h2 { color: var(--gold-primary); }
+        .services .section-header p { color: #999; }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .service-item {
+            display: flex; gap: 2rem; padding: 2.5rem;
+            background: var(--gray-dark); border-radius: 5px;
+            border-left: 3px solid transparent; transition: var(--transition);
+            align-items: flex-start;
+        }
+        .service-item:hover {
+            background: var(--black-soft); border-left-color: var(--gold-primary);
+            transform: translateX(10px);
+        }
+        .service-icon {
+            min-width: 70px; height: 70px;
+            background: rgba(212, 175, 55, 0.1); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;            font-size: 1.8rem; color: var(--gold-primary); transition: var(--transition);
+        }
+        .service-item:hover .service-icon {
+            background: var(--gold-primary); color: var(--black-deep);
+            transform: rotateY(360deg);
+        }
+        .service-content h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--white); transition: var(--transition); }
+        .service-content p { color: #aaa; line-height: 1.7; font-size: 0.95rem; }
+
+        /* GALLERY */
+        .gallery { background: var(--white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .gallery-item {
+            position: relative; overflow: hidden;
+            border-radius: 5px; aspect-ratio: 1;
+            background: #eee; cursor: pointer;
+        }
+        .gallery-item::before {
+            content: 'Imperial'; position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: #ddd; font-family: var(--font-heading);
+            font-size: 1.5rem; font-weight: 700; z-index: 0;
+        }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: rgba(5, 5, 5, 0.85);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: var(--transition); z-index: 1;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay i {
+            color: var(--gold-primary); font-size: 2.5rem;
+            transform: scale(0.5); transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-overlay i { transform: scale(1); }
+
+
+        .gallery-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+        /* CONTACT */
+        .contact { background: linear-gradient(135deg, var(--gray-light) 0%, #e0e0e0 100%); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+        .contact-info h3 { font-size: 2.5rem; color: var(--black-deep); margin-bottom: 1.5rem; }
+        .contact-info > p { color: #555; margin-bottom: 3rem; line-height: 1.8; font-size: 1.1rem; }
+        .contact-details { display: flex; flex-direction: column; gap: 2rem; }
+        .contact-item {
+            display: flex; align-items: center; gap: 1.5rem;
+            min-height: 44px; touch-action: manipulation;
+        }
+        .contact-item i {
+            width: 60px; height: 60px; background: var(--white);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--gold-primary); font-size: 1.4rem;            box-shadow: var(--shadow-soft); transition: var(--transition); flex-shrink: 0;
+        }
+        .contact-item:hover i {
+            background: var(--gold-primary); color: var(--white);
+            transform: translateY(-5px);
+        }
+        .contact-item div h4 { color: var(--black-deep); margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .contact-item div p { color: #666; margin: 0; font-size: 0.95rem; }
+        .contact-form {
+            background: var(--white); padding: 3.5rem;
+            border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--gold-primary);
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block; color: var(--black-deep); font-weight: 600;
+            margin-bottom: 0.8rem; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 1.2rem; border: 1px solid #ddd;
+            border-radius: 5px; font-family: var(--font-body);
+            font-size: 16px; transition: var(--transition); background: #fafafa;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--gold-primary);
+            background: var(--white); box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 140px; }
+
+        /* FOOTER */
+        footer {
+            background: var(--black-deep); color: var(--white);
+            padding: 5rem 2rem 2rem; border-top: 3px solid var(--gold-primary);
+        }
+        .footer-content {
+            max-width: 1280px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 4rem; margin-bottom: 4rem;
+        }
+        .footer-section h3 {
+            color: var(--gold-primary); margin-bottom: 1.5rem;
+            font-size: 1.4rem; position: relative; padding-bottom: 10px;
+        }
+        .footer-section h3::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 40px; height: 2px; background: rgba(255,255,255,0.2);
+        }
+        .footer-section p { color: #999; line-height: 1.8; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .footer-section ul li { margin-bottom: 1rem; }        .footer-section ul li a { color: #999; transition: var(--transition); font-size: 0.95rem; }
+        .footer-section ul li a:hover { color: var(--gold-primary); padding-left: 5px; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-links a {
+            width: 45px; height: 45px; background: var(--gray-dark);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--gold-primary); transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1); min-height: 44px; min-width: 44px;
+        }
+        .social-links a:hover {
+            background: var(--gold-primary); color: var(--black-deep);
+            transform: translateY(-5px); border-color: var(--gold-primary);
+        }
+        .footer-bottom {
+            text-align: center; padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666; font-size: 0.9rem;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+
+        /* MENU OVERLAY */
+        .menu-overlay {
+            display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); z-index: 999; backdrop-filter: blur(3px);
+        }
+        .menu-overlay.active { display: block; }
+
+        /* RESPONSIVIDADE */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-content h2 { font-size: 3rem; }
+            .about-grid, .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 1rem; }
+            .logo-text h1 { font-size: 1.2rem; }
+            .logo-text span { font-size: 0.6rem; letter-spacing: 2px; }
+            .logo-icon { width: 45px; height: 45px; font-size: 1.5rem; }
+            .mobile-menu { display: flex; z-index: 1001; }
+            .nav-links {
+                position: fixed; top: 70px; right: -100%; width: 75%; max-width: 300px;
+                height: calc(100vh - 70px); background: rgba(5, 5, 5, 0.98);
+                backdrop-filter: blur(10px); flex-direction: column;                padding: 2rem 1.5rem; gap: 1rem; transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3); overflow-y: auto;
+            }
+            .nav-links.active { right: 0; animation: slideIn 0.3s ease; }
+            .nav-links a { font-size: 1.1rem; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .hero { padding: 120px 1.5rem 80px; min-height: auto; }
+            .hero-container { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+            .hero-content h2 { font-size: 2rem; line-height: 1.2; margin-bottom: 1rem; }
+            .hero-content .tagline {
+                font-size: 1.1rem; border-left: none; border-top: 3px solid var(--gold-primary);
+                padding-left: 0; padding-top: 1rem; margin-bottom: 1.5rem;
+            }
+            .hero-content p { font-size: 1rem; margin-bottom: 2rem; }
+            .hero-buttons { flex-direction: column; gap: 1rem; }
+            .btn { width: 100%; padding: 1rem 2rem; font-size: 0.95rem; }
+            .hero-image { display: none; }
+            section { padding: 60px 1.5rem; }
+            .section-header h2 { font-size: 2rem; }
+            .section-header p { font-size: 1rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .about-card { padding: 2rem 1.5rem; }
+            .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .service-item { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+            .service-icon { margin: 0 auto 1rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .contact-info h3 { font-size: 1.8rem; }
+            .contact-item { flex-direction: row; text-align: left; }
+            .contact-item i { width: 50px; height: 50px; font-size: 1.2rem; }
+            .contact-item div h4 { font-size: 1rem; }
+            .contact-item div p { font-size: 0.9rem; }
+            .contact-form { padding: 2rem 1.5rem; }
+            .form-group label { font-size: 0.85rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .footer-section h3::after { left: 50%; transform: translateX(-50%); }
+            .social-links { justify-content: center; }
+            .footer-section ul li a:hover { padding-left: 0; }
+        }
+        @media (max-width: 480px) {
+            .logo-text h1 { font-size: 1rem; }
+            .logo-text span { display: none; }
+            .hero-content h2 { font-size: 1.6rem; }
+            .hero-content .tagline { font-size: 1rem; }
+            .section-header h2 { font-size: 1.6rem; }
+            .about-card h3, .service-content h3 { font-size: 1.2rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-info h3 { font-size: 1.5rem; }
+            .btn { padding: 0.9rem 1.5rem; font-size: 0.9rem; }
+        }
+        @media screen and (max-width: 768px) {            input, textarea, select { font-size: 16px !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-overlay"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                <div class="logo-text">
+                    <h1>Imperial Uniformes</h1>
+                    <span>CONFECÇÕES E ESTAMPARIA</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h2>Uniformes Personalizados para Eventos</h2>
+                <p class="tagline">Organização, Unidade e Excelência para o Seu Evento!</p>
+                <p>Especialistas em confecção de uniformes personalizados que transmitem profissionalismo e elegância. Transforme a imagem da sua empresa com qualidade imperial.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5567984512185?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20de%20uniformes." class="btn btn-primary" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i> Solicite Orçamento
+                    </a>
+                    <a href="#servicos" class="btn btn-secondary">Conhecer Serviços</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-placeholder"><i class="fas fa-tshirt"></i></div>
+                <div class="floating-card card-1"><i class="fas fa-award"></i><h4>+10 Anos</h4><p>de Excelência</p></div>
+                <div class="floating-card card-2"><i class="fas fa-users"></i><h4>+5000</h4><p>Clientes Satisfeitos</p></div>
+            </div>
+        </div>
+    </section>
+    <!-- About -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="section-header"><h2>Por Que Escolher a Imperial?</h2><p>Oferecemos soluções completas em uniformes personalizados com qualidade superior</p></div>
+            <div class="about-grid">
+                <div class="about-card"><i class="fas fa-gem"></i><h3>Qualidade Premium</h3><p>Utilizamos apenas tecidos de alta qualidade e técnicas avançadas de confecção e estamparia para garantir durabilidade e conforto.</p></div>
+                <div class="about-card"><i class="fas fa-palette"></i><h3>Personalização Total</h3><p>Cada projeto é único. Criamos uniformes que refletem a identidade da sua marca e atendem às necessidades específicas do seu evento.</p></div>
+                <div class="about-card"><i class="fas fa-clock"></i><h3>Entrega Pontual</h3><p>Respeitamos seus prazos. Nossa produção ágil garante que seus uniformes estejam prontos no momento certo para seu evento.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-header"><h2>Nossos Serviços</h2><p>Soluções completas em uniformes e estamparia para todos os tipos de eventos</p></div>
+            <div class="services-grid">
+                <div class="service-item"><div class="service-icon"><i class="fas fa-tshirt"></i></div><div class="service-content"><h3>Uniformes Corporativos</h3><p>Camisetas, polos, jalecos e calças estampados com a identidade da sua empresa.</p></div></div>
+                <div class="service-item"><div class="service-icon"><i class="fas fa-calendar-alt"></i></div><div class="service-content"><h3>Eventos</h3><p>Uniformes personalizados para equipes de eventos, proporcionando organização e profissionalismo.</p></div></div>
+                <div class="service-item"><div class="service-icon"><i class="fas fa-graduation-cap"></i></div><div class="service-content"><h3>Uniformes Escolares</h3><p>Confeccção de uniformes para escolas com tecidos confortáveis e duráveis para o dia a dia dos alunos.</p></div></div>
+                <div class="service-item"><div class="service-icon"><i class="fas fa-print"></i></div><div class="service-content"><h3>Estamparia Digital</h3><p>Estampas personalizadas de alta resolução com técnicas modernas de serigrafia e sublimação.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+   <div class="gallery-item">
+    <img src="img/foto1.jpeg" alt="Uniforme 1">
+    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+</div>
+
+<div class="gallery-item">
+    <img src="img/foto2.jpeg" alt="Uniforme 2">
+    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+</div>
+
+<div class="gallery-item">
+    <img src="img/foto3.jpeg" alt="Uniforme 3">
+    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+</div>
+
+   <!-- SOMENTE A PARTE ALTERADA (CONTATO) -->
+
+<section class="contact" id="contato">
+    <div class="container">
+        <div class="section-header">
+            <h2>Entre em Contato</h2>
+            <p>Solicite seu orçamento sem compromisso</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Vamos Conversar?</h3>
+                <p>Estamos prontos para atender suas necessidades em uniformes personalizados. Entre em contato conosco e descubra como podemos transformar a imagem do seu evento.</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Av. Getúlio Vargas, 1960 - Jardim Imperial, Paranaíba - MS, 79500-000</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Telefone / WhatsApp</h4>
+                            <p><a href="tel:+5567984512185">(67) 98451-2185</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p><a href="mailto:imperialuniformesms@gmail.com">imperialuniformesms@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horário de Atendimento</h4>
+                            <p>Segunda-feira a Sexta-feira: 7h às 17h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAPA NO LUGAR DO FORMULÁRIO -->
+            <div class="contact-form">
+                <iframe 
+                    src="https://www.google.com/maps?q=Av.+Getúlio+Vargas,+1960,+Paranaíba+-+MS&output=embed"
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius:10px;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo" style="margin-bottom:1rem;cursor:default">
+                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                    <div class="logo-text"><h1>Imperial Uniformes</h1><span>CONFECÇÕES E ESTAMPARIA</span></div>
+                </div>
+                <p>Excelência em uniformes personalizados para eventos, empresas e instituições. Qualidade, pontualidade e atendimento diferenciado.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5567984512185" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#galeria">Portfólio</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Serviços</h3>
+                <ul>
+                    <li><a href="#servicos">Uniformes Corporativos</a></li>
+                    <li><a href="#servicos">Eventos</a></li>
+                    <li><a href="#servicos">Uniformes Escolares</a></li>
+                    <li><a href="#servicos">Estamparia Digital</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+5567984512185">(67) 98451-2185</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:imperialuniformesms@gmail.com">imperialuniformesms@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> Paranaíba - MS</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Horário de Atendimento</h3>
+                <p>Segunda-feira a Sexta-feira<br>7h às 17h</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="year"></span> Imperial Uniformes. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Ano automático no footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Menu Mobile
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        mobileMenu?.addEventListener('click', toggleMenu);
+        menuOverlay?.addEventListener('click', toggleMenu);        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.style.boxShadow = window.scrollY > 100 ? '0 2px 10px rgba(0,0,0,0.3)' : 'none';
+        });
+
+        // Proteção básica contra cópia (deterrence)
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+            }
+        });
+
+        // Form submission handler
+        document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+            if(this.action.includes('SEU_ID_AQUI')) {
+                e.preventDefault();
+                alert('Para receber as mensagens, cadastre-se em formspree.io e substitua "SEU_ID_AQUI" pela sua URL.');
+            }
+        });
+    </script>
+</body>
+</html>
+
